@@ -1,92 +1,177 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
+    <link rel="stylesheet" href="kelas.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Classroom Sederhana</title>
+    <title>Halaman Kelas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .announcement, .assignment, .discussion {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #007bff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-x: hidden;
         }
-        .button:hover {
-            background-color: #0056b3;
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .announcement {
+            background: rgba(255, 255, 255, 0.2);
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .announcement h2 {
+            margin-top: 0;
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .announcement textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            resize: none;
+            font-size: 1rem;
+        }
+
+        .announcement button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #dc2743;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .announcement button:hover {
+            background: #cc2366;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .grid-item h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            margin-top: auto;
+            width: 100%;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
         }
     </style>
+    <script>
+        function updateAnnouncement() {
+            const announcementText = document.getElementById('announcementText').value;
+            const displayArea = document.getElementById('displayArea');
+            displayArea.textContent = announcementText;
+        }
+    </script>
 </head>
 <body>
-
-<div class="container">
-    <h1>Google Classroom</h1>
+    <header>
+        Nama Kelas: Kelas Pemrograman Dasar
+    </header>
 
     <div class="announcement">
         <h2>Pengumuman</h2>
-        <p>Selamat datang di kelas! Pastikan untuk memeriksa pengumuman ini secara rutin.</p>
+        <textarea id="announcementText" placeholder="Tulis pengumuman di sini..."></textarea>
+        <button onclick="updateAnnouncement()">Update Pengumuman</button>
+        <p id="displayArea">Selamat datang di kelas! Pastikan untuk memeriksa pengumuman ini secara rutin untuk informasi terbaru.</p>
     </div>
 
-    <div class="assignment">
-        <h2>Tugas</h2>
-        <p>1. Tugas Harian: Bacalah Bab 1 dan buat ringkasan.</p>
-        <p>2. Tugas Mingguan: Siapkan presentasi tentang topik yang telah dibahas.</p>
-        <a href="tugas.html" class="button">Kumpulkan Tugas</a>
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="pengumpulan_tugas.html">
+                <h3>Pengumpulan Tugas</h3>
+                <p>Kumpulkan tugas Anda di sini.</p>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="materi.html">
+                <h3>Materi</h3>
+                <p>Lihat materi pembelajaran.</p>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="diskusi.html">
+                <h3>Diskusi</h3>
+                <p>Bergabung dalam forum diskusi.</p>
+            </a>
+        </div>
     </div>
 
-    <div class="material">
-        <h2>Materi Pembelajaran</h2>
-        <ul>
-            <li><a href="https://apps.um-surabaya.ac.id/pkm2024/upload/surat_keluar/3628-PKM%20RATNA%202024.pdf">Materi Pelajaran 1 (PDF)</a></li>
-            <li><a href="https://youtu.be/InBfYmE_g_o?si=SbDdOxu1DJm6mUpY">Video Pembelajaran 1</a></li>
-        </ul>
-    </div>
-
-    <div class="discussion">
-        <h2>Forum Diskusi</h2>
-        <p>Diskusikan pertanyaan Anda di sini:</p>
-        <textarea id="discussionInput" rows="4" cols="50" placeholder="Tulis komentar..."></textarea><br>
-        <button onclick="postComment()">Kirim</button>
-        <a href="classroom.html"><button class="submit">back</button></a>
-        <div id="commentsSection"></div>
-    </div>
-</div>
-
-<script>
-    function postComment() {
-        var input = document.getElementById('discussionInput').value;
-        if (input) {
-            var commentsSection = document.getElementById('commentsSection');
-            var newComment = document.createElement('p');
-            newComment.textContent = input;
-            commentsSection.appendChild(newComment);
-            document.getElementById('discussionInput').value = ''; 
-        } else {
-            alert('Silakan masukkan komentar sebelum mengirim.');
-        }
-    }
-</script>
-
-</body>
-</html>
+    <footer>
+        <p>&copy; 2025 Kelas Pemrograman Dasar</p>
+    </footer>
